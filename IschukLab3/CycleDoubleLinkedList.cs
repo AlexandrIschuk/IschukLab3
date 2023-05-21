@@ -37,44 +37,19 @@ namespace Homework5
             }
         }
 
-        public void AddLast(int value)
+        public void AddLast(int data)
         {
-            DoubleNode newNode = new DoubleNode(value);
-
-            if (head == null)
+            DoubleNode q;
+            DoubleNode p = head;
+            if (p != null)
             {
-                head = newNode;
-                head.Next = head;
-                head.Prev = head;
+                q = new DoubleNode(data);
+                q.Next = p;
+                q.Prev = p.Prev;
+                p.Prev.Next = q;
+                p.Prev = q;
+
             }
-            else
-            {
-                newNode.Next = head;
-                newNode.Prev = head.Prev;
-                head.Prev.Next = newNode;
-                head.Prev = newNode;
-            }
-        }
-
-        public void Clear()
-        {
-            if (head != null)
-            {
-                DoubleNode current = head.Next;
-
-                while (current != head)
-                {
-                    DoubleNode temp = current;
-                    current = current.Next;
-                    temp.Prev = null;
-                    temp.Next = null;
-                }
-
-                head.Next = head;
-                head.Prev = head;
-            }
-
-            
         }
 
         public void DisplayList(ListBox listBox)
@@ -83,7 +58,6 @@ namespace Homework5
             if (head != null)
             {
                 DoubleNode current = head;
-
                 do
                 {
                     listBox.Items.Add(current.Value);
@@ -97,16 +71,6 @@ namespace Homework5
         {
             if (head != null)
             {
-                DoubleNode current = head.Next;
-
-                while (current != head)
-                {
-                    DoubleNode temp = current;
-                    current = current.Next;
-                    temp.Prev = null;
-                    temp.Next = null;
-                }
-
                 head.Next = head;
                 head.Prev = head;
             }
@@ -138,15 +102,6 @@ namespace Homework5
         {
             if (head != null)
             {
-                DoubleNode current = head;
-
-                do
-                {
-                    DoubleNode temp = current;
-                    current = current.Next;
-                    temp.Next = null;
-                    temp.Prev = null;
-                } while (current != head);
 
                 head = null;
             }
@@ -164,9 +119,8 @@ namespace Homework5
             }
             else
             {
-                DoubleNode current = head;
                 int count = 1;
-
+                DoubleNode current = head;
                 while (count < position && current.Next != head)
                 {
                     current = current.Next;
@@ -189,13 +143,6 @@ namespace Homework5
         {
             if (head != null)
             {
-                if (head.Next == head)
-                {
-                    head = null;
-                    
-                }
-                else
-                {
                     DoubleNode temp = head;
                     while (temp.Next != head)
                     {
@@ -205,9 +152,7 @@ namespace Homework5
                     temp.Next = head.Next;
                     head = head.Next;
                     head.Prev = temp;
-                }
-
-                
+                    
             }
 
             
@@ -217,60 +162,46 @@ namespace Homework5
         {
             if (head != null)
             {
-                if (head.Next == head)
+                DoubleNode p = head.Prev;
+                if (p != null && p != head)
                 {
-                    head = null;
-                    
-                }
-                else
-                {
-                    DoubleNode temp = head;
-                    while (temp.Next != head)
-                    {
-                        temp = temp.Next;
-                    }
-
-                    temp.Prev.Next = head;
-                    head.Prev = temp.Prev;
+                    p.Prev.Next = p.Next;
+                    p.Next.Prev = p.Prev;
                 }
 
-               
             }
 
             
         }
-        public void RemoveAt(int index)
+        public void RemoveAt(int index,DoubleNode current)
         {
             if (head != null)
             {
-                if (index == 0)
+                DoubleNode temp = head.Next;
+                int i = 0;
+
+                while (i < index && temp != head)
                 {
-                    RemoveFirst();
-                    
+                    temp = temp.Next;
+                    i++;
                 }
-                else
+
+                if (i == index)
                 {
-                    DoubleNode temp = head;
-                    int i = 0;
-                    while (i < index - 1 && temp.Next != head)
+                    if (temp == head)
                     {
-                        temp = temp.Next;
-                        i++;
+                        head = head.Next;
+                        current = head.Next;
                     }
 
-                    if (i == index - 1 || temp.Next != head)
-                    {
-                        temp.Next = temp.Next.Next;
-                        temp.Next.Prev = temp;
-                    }
-
-                    
+                    temp.Prev.Next = temp.Next;
+                    temp.Next.Prev = temp.Prev;
                 }
 
                 
             }
 
-            
+           
         }
         public void RemoveRange(int startIndex, int endIndex)
         {
@@ -286,25 +217,17 @@ namespace Homework5
                 }
                 else
                 {
-                    DoubleNode temp = head.Next;
+                    DoubleNode temp = head;
                     int i = 0;
-                    while (i < startIndex - 1 && temp != head)
-                    {
-                        temp = temp.Next;
-                        i++;
-                    }
-
-                    if (i == startIndex - 1 || temp != head)
-                    {
-                        DoubleNode startNode = temp;
+                        DoubleNode startNode = temp.Next;
                         for (int j = startIndex; j <= endIndex && startNode != head; j++)
                         {
                             startNode = startNode.Next;
                         }
 
-                        temp = startNode;
+                        temp.Next = startNode;
                         startNode.Prev = temp;
-                    }
+                    
 
                     
                 }

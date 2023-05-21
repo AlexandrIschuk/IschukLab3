@@ -13,6 +13,7 @@ namespace Homework5
             InitializeComponent();
         }
         CycleDoubleLinkedList list = new CycleDoubleLinkedList();
+        DoubleNode head;
 
 
        
@@ -141,7 +142,7 @@ namespace Homework5
             }
             else
             {
-                list.RemoveAt(N);
+                list.RemoveAt(N,head);
                 list.DisplayList(listBox1);
 
             }
