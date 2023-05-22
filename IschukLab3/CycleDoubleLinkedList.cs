@@ -110,18 +110,10 @@ namespace Homework5
         }
         public void AddNode(int data, int position)
         {
-            if (head == null)
-            {
-                head = new DoubleNode(data);
-                head.Next = head;
-                head.Prev = head;
-                
-            }
-            else
-            {
+
                 int count = 1;
-                DoubleNode current = head;
-                while (count < position && current.Next != head)
+                DoubleNode current = head.Next;
+                while (count + 1 < position && current != head)
                 {
                     current = current.Next;
                     count++;
@@ -135,7 +127,7 @@ namespace Homework5
                     current.Next.Prev = newNode;
                     current.Next = newNode;
                 }
-            }
+
             
 
         }
@@ -203,33 +195,41 @@ namespace Homework5
 
            
         }
+
+        public DoubleNode FindIndex(int index)
+        { 
+            DoubleNode p = head.Next;
+            if(head != null)
+            {
+                int i = 0;
+                while(p != head && i < index)
+                {
+                    p = p.Next;
+                    i++;
+                }
+                if(p == head)
+                {
+                    p = null;
+                }
+            }
+            
+            return p;
+        }
         public void RemoveRange(int startIndex, int endIndex)
         {
             if (head != null)
             {
                 if (startIndex == 0)
                 {
-                    for (int j = 0; j < endIndex && head != null; j++)
-                    {
-                        RemoveFirst();
-                    }
-                    
+                    DoubleNode end = FindIndex(endIndex);
+                    head.Next = end;
+                    RemoveFirst();
                 }
                 else
                 {
-                    DoubleNode temp = head;
-                    int i = 0;
-                        DoubleNode startNode = temp.Next;
-                        for (int j = startIndex; j <= endIndex && startNode != head; j++)
-                        {
-                            startNode = startNode.Next;
-                        }
-
-                        temp.Next = startNode;
-                        startNode.Prev = temp;
-                    
-
-                    
+                   DoubleNode start =  FindIndex(startIndex-1);
+                   DoubleNode end = FindIndex(endIndex);
+                   start.Next = end;  
                 }
 
                 

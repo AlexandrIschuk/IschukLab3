@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IschukLab3", "IschukLab3\IschukLab3.csproj", "{1E590422-5088-447D-A792-9DE2D1F6C0A7}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassWork4_2", "..\ClassWork4_2\ClassWork4_2\ClassWork4_2.csproj", "{4A43E489-FE5E-461C-A351-D1461E648A9B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{1E590422-5088-447D-A792-9DE2D1F6C0A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E590422-5088-447D-A792-9DE2D1F6C0A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E590422-5088-447D-A792-9DE2D1F6C0A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A43E489-FE5E-461C-A351-D1461E648A9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A43E489-FE5E-461C-A351-D1461E648A9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A43E489-FE5E-461C-A351-D1461E648A9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A43E489-FE5E-461C-A351-D1461E648A9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
